@@ -88,7 +88,6 @@ function compareObjects(obj1, obj2) {
   let answer = true;
   const keysObj1 = Object.keys(obj1);
   const keysObj2 = Object.keys(obj2);
-  console.log(keysObj1);
   if (keysObj1.length !== keysObj2.length) answer = false;
 
   for (let i = 0; i < keysObj1.length; i += 1) {
@@ -131,8 +130,8 @@ function isEmptyObject(obj) {
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-function makeImmutable(/* obj */) {
-  throw new Error('Not implemented');
+function makeImmutable(obj) {
+  return Object.freeze(obj);
 }
 
 /**
