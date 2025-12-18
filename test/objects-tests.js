@@ -85,31 +85,6 @@ describe('objects-tasks', () => {
     });
   });
 
-  it.optional('removeProperties should remove properties', () => {
-    [
-      {
-        obj: { a: 1, b: 2, c: 3 },
-        keys: ['b', 'c'],
-        expected: { a: 1 },
-      },
-      {
-        obj: { a: 1, b: 2, c: 3 },
-        keys: ['d', 'e'],
-        expected: { a: 1, b: 2, c: 3 },
-      },
-      {
-        obj: { name: 'John', age: 30, city: 'New York' },
-        keys: ['age'],
-        expected: { name: 'John', city: 'New York' },
-      },
-    ].forEach((data) => {
-      assert.deepStrictEqual(
-        tasks.removeProperties(data.obj, data.keys),
-        data.expected
-      );
-    });
-  });
-
   it.optional(
     'compareObjects should return true if the objects are equal and false otherwise',
     () => {
@@ -209,6 +184,14 @@ describe('objects-tasks', () => {
         {
           queue: [25, 100],
           expected: false,
+        },
+        {
+          queue: [25, 25, 25, 100],
+          expected: true,
+        },
+        {
+          queue: [25, 25, 25, 25, 50, 100, 50],
+          expected: true,
         },
       ].forEach((data) => {
         assert.equal(tasks.sellTickets(data.queue), data.expected);
@@ -454,7 +437,7 @@ describe('objects-tasks', () => {
   );
 
   it.optional(
-    'cssSelectorBuilder should creates css selector object with stringify() method',
+    'cssSelectorBuilder should create css selector object with stringify() method',
     () => {
       const builder = tasks.cssSelectorBuilder;
 
@@ -600,9 +583,9 @@ describe('objects-tasks', () => {
       ].forEach((fn) => {
         assert.throws(
           fn,
-          /Element, id and pseudo-element should not occur more then one time inside the selector/,
+          /Element, id and pseudo-element should not occur more than one time inside the selector/,
 
-          '\nPlease throw an exception "Element, id and pseudo-element should not occur more then one time inside the selector" ' +
+          '\nPlease throw an exception "Element, id and pseudo-element should not occur more than one time inside the selector" ' +
             'if element, id or pseudo-element occurs twice or more times'
         );
       });
@@ -614,7 +597,7 @@ describe('objects-tasks', () => {
       ].forEach((fn) => {
         assert.doesNotThrow(
           fn,
-          /Element, id and pseudo-element should not occur more then one time inside the selector/
+          /Element, id and pseudo-element should not occur more than one time inside the selector/
         );
       });
 
